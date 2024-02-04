@@ -2,6 +2,7 @@
 //
 
 #include"raylib.h"
+#include <vector>
 
 int main()
 {
