@@ -2,11 +2,28 @@
 //
 
 #include"raylib.h"
+#include"string"
 #include <vector>
 
+using namespace std;
 int main()
 {
-    
+    const int width = 800;
+    const int height = 400;
+    string gameName = "Dapper Dashere";
+    const char* name = gameName.c_str();
+
+    SetTargetFPS(60);
+    InitWindow(width, height, name);
+   
+    while (!WindowShouldClose())
+    {
+        BeginDrawing();
+        ClearBackground(WHITE);
+        EndDrawing();
+    }
+    CloseWindow();
+    return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
