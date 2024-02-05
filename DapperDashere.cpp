@@ -15,11 +15,30 @@ int main()
 
     SetTargetFPS(60);
     InitWindow(width, height, name);
+
+    int positionPlayerY = 0;
+    int positionPlayerX = 0;
+    //int velocity = 10;
+
+    int widthRectangle = 50;
+    int heightRectangle = 80;
+    int posY = (height - heightRectangle);
+    int velocity = 0;
    
     while (!WindowShouldClose())
     {
         BeginDrawing();
         ClearBackground(WHITE);
+       
+
+        if (IsKeyPressed(KEY_SPACE))
+        {
+            velocity -= 10;
+        }
+        posY += velocity;
+
+        DrawRectangle(width / 2, velocity, widthRectangle, heightRectangle, BLACK);
+
         EndDrawing();
     }
     CloseWindow();
