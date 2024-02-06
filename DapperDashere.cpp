@@ -8,8 +8,8 @@
 using namespace std;
 int main()
 {
-    const int width = 512;
-    const int height = 380;
+    const int width = 800;
+    const int height = 400;
     string gameName = "Dapper Dashere";
     const char* name = gameName.c_str();
 
@@ -19,6 +19,7 @@ int main()
     //Acceleration due to gravity (pixels/frame)/frame
     const int gravity = 1;
     const int jumpVelocity = -22;
+    bool inAir = false;
 
     int positionPlayerY = 0;
     int positionPlayerX = 0;
@@ -38,17 +39,20 @@ int main()
         if (posY >= (height - heightRectangle))
         {
              velocity = 0;
+             inAir = false;
         }
         else
         {
             //Apply gravity
             velocity += gravity;
+            inAir = true;
         }
 
         //Jump Check
-        if (IsKeyPressed(KEY_SPACE))
+        if (IsKeyPressed(KEY_SPACE) && !inAir)
         {
             velocity += jumpVelocity;
+            
         }
 
         //update position
