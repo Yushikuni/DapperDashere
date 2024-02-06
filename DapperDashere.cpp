@@ -18,6 +18,7 @@ int main()
     
     //Acceleration due to gravity (pixels/frame)/frame
     const int gravity = 1;
+    const int jumpVelocity = -22;
 
     int positionPlayerY = 0;
     int positionPlayerX = 0;
@@ -47,7 +48,7 @@ int main()
         //Jump Check
         if (IsKeyPressed(KEY_SPACE))
         {
-            velocity -= 10;
+            velocity += jumpVelocity;
         }
 
         //update position
