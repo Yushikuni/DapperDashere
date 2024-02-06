@@ -8,13 +8,16 @@
 using namespace std;
 int main()
 {
-    const int width = 800;
-    const int height = 400;
+    const int width = 512;
+    const int height = 380;
     string gameName = "Dapper Dashere";
     const char* name = gameName.c_str();
 
     SetTargetFPS(60);
     InitWindow(width, height, name);
+    
+    //Acceleration due to gravity (pixels/frame)/frame
+    const int gravity = 1;
 
     int positionPlayerY = 0;
     int positionPlayerX = 0;
@@ -30,11 +33,24 @@ int main()
         BeginDrawing();
         ClearBackground(WHITE);
        
+        //rectangle on the ground
+        if (posY >= (height - heightRectangle))
+        {
+             velocity = 0;
+        }
+        else
+        {
+            //Apply gravity
+            velocity += gravity;
+        }
 
+        //Jump Check
         if (IsKeyPressed(KEY_SPACE))
         {
             velocity -= 10;
         }
+
+        //update position
         posY += velocity;
 
         DrawRectangle(width / 2, velocity, widthRectangle, heightRectangle, BLACK);
