@@ -53,7 +53,7 @@ int main()
         //update position
         posY += velocity;
 
-        DrawRectangle(width / 2, velocity, widthRectangle, heightRectangle, BLACK);
+        DrawRectangle(width / 2, posY, widthRectangle, heightRectangle, BLACK);
 
         EndDrawing();
     }
