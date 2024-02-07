@@ -18,6 +18,12 @@ int main()
     
     //Acceleration due to gravity (pixels/frame)/frame
     const int gravity = 1;
+
+    //textures
+    Texture2D scarfy = LoadTexture("textures/scarfy.png");
+    Rectangle scarfyRectangle;
+    Vector2 scyrfyPosition;
+
     const int jumpVelocity = -22;
     bool inAir = false;
 
@@ -62,6 +68,7 @@ int main()
 
         EndDrawing();
     }
+    UnloadTexture(scarfy);
     CloseWindow();
     return 0;
 }
