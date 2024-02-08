@@ -20,7 +20,7 @@ int main()
     const int gravity = 1;
 
     //textures
-    Texture2D scarfy = LoadTexture("/textures/scarfy.png");
+    Texture2D scarfy = LoadTexture("textures/scarfy.png");
     Rectangle scarfyRectangle;
     scarfyRectangle.width = scarfy.width / 6;
     scarfyRectangle.height = scarfy.height;
