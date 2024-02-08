@@ -20,20 +20,20 @@ int main()
     const int gravity = 1;
 
     //textures
-    Texture2D scarfy = LoadTexture("textures/scarfy.png");
+    Texture2D scarfy = LoadTexture("/textures/scarfy.png");
     Rectangle scarfyRectangle;
-    Vector2 scyrfyPosition;
+    scarfyRectangle.width = scarfy.width / 6;
+    scarfyRectangle.height = scarfy.height;
+    scarfyRectangle.x = 0;
+    scarfyRectangle.y = 0;
+
+    Vector2 scarfyPosition;
+    scarfyPosition.x = width / 2 - scarfy.width / 2;
+    scarfyPosition.y = height - scarfyRectangle.height;
 
     const int jumpVelocity = -22;
     bool inAir = false;
 
-    int positionPlayerY = 0;
-    int positionPlayerX = 0;
-    //int velocity = 10;
-
-    int widthRectangle = 50;
-    int heightRectangle = 80;
-    int posY = (height - heightRectangle);
     int velocity = 0;
    
     while (!WindowShouldClose())
@@ -42,7 +42,7 @@ int main()
         ClearBackground(WHITE);
        
         //rectangle on the ground
-        if (posY >= (height - heightRectangle))
+        if (scarfyPosition.y >= (height - scarfyRectangle.height))
         {
              velocity = 0;
              inAir = false;
@@ -62,9 +62,9 @@ int main()
         }
 
         //update position
-        posY += velocity;
+        scarfyPosition.y += velocity;
 
-        DrawRectangle(width / 2, posY, widthRectangle, heightRectangle, BLACK);
+        DrawTextureRec(scarfy, scarfyRectangle, scarfyPosition, WHITE);
 
         EndDrawing();
     }
