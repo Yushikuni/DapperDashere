@@ -37,9 +37,13 @@ int main()
 
     int velocity = 0;
 
+    
    
     while (!WindowShouldClose())
     {
+        //Making a delta time (time since last frame)
+        const float deltaTime = GetFrameTime();
+        
         BeginDrawing();
         ClearBackground(WHITE);
        
@@ -52,7 +56,7 @@ int main()
         else
         {
             //Apply gravity
-            velocity += gravity;
+            velocity += gravity * deltaTime;
             inAir = true;
         }
 
@@ -60,11 +64,10 @@ int main()
         if (IsKeyPressed(KEY_SPACE) && !inAir)
         {
             velocity += jumpVelocity;
-            
         }
 
         //update position
-        scarfyPosition.y += velocity;
+        scarfyPosition.y += velocity * deltaTime;
 
         DrawTextureRec(scarfy, scarfyRectangle, scarfyPosition, WHITE);
 
