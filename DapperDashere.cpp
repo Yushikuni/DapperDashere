@@ -17,7 +17,7 @@ int main()
     InitWindow(width, height, name);
     
     //Acceleration due to gravity (pixels/frame)/frame
-    const int gravity = 1;
+    const int gravity = 1'000;
 
     //textures
     Texture2D scarfy = LoadTexture("textures/scarfy.png");
@@ -31,10 +31,12 @@ int main()
     scarfyPosition.x = width / 2 - scarfy.width / 2;
     scarfyPosition.y = height - scarfyRectangle.height;
 
-    const int jumpVelocity = -22;
+    //Jump velocity (pixels/sec)
+    const int jumpVelocity = -600;
     bool inAir = false;
 
     int velocity = 0;
+
    
     while (!WindowShouldClose())
     {
