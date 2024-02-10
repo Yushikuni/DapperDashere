@@ -31,6 +31,12 @@ int main()
     scarfyPosition.x = width / 2 - scarfy.width / 2;
     scarfyPosition.y = height - scarfyRectangle.height;
 
+    //animation frame
+    int animFrame = 0;
+    const float updateTimeAnimation = 1.0 / 12.0;
+    float runngingTime = 0;
+
+
     //Jump velocity (pixels/sec)
     const int jumpVelocity = -600;
     bool inAir = false;
@@ -68,6 +74,21 @@ int main()
 
         //update position
         scarfyPosition.y += velocity * deltaTime;
+        runngingTime += deltaTime;
+
+        if (runngingTime >= updateTimeAnimation)
+        {
+            runngingTime = 0;
+            //update animation frame
+            scarfyRectangle.x = animFrame * scarfyRectangle.width;
+            animFrame++;
+            if (animFrame > 5)
+            {
+                animFrame = 0;
+            }
+        }
+
+
 
         DrawTextureRec(scarfy, scarfyRectangle, scarfyPosition, WHITE);
 
