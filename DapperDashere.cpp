@@ -19,7 +19,14 @@ int main()
     //Acceleration due to gravity (pixels/frame)/frame
     const int gravity = 1'000;
 
-    //textures
+    //Hazardus Nebula
+    Texture2D nebula = LoadTexture("texture/12_nebula_spritesheet.png");
+    Rectangle nebulaRectangle;
+
+
+
+
+    //textures for Scarfy
     Texture2D scarfy = LoadTexture("textures/scarfy.png");
     Rectangle scarfyRectangle;
     scarfyRectangle.width = scarfy.width / 6;
@@ -95,6 +102,7 @@ int main()
         EndDrawing();
     }
     UnloadTexture(scarfy);
+    UnloadTexture(nebula);
     CloseWindow();
     return 0;
 }
