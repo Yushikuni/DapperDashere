@@ -20,8 +20,8 @@ int main()
     const int gravity = 1'000;
 
     //Hazardus Nebula
-    Texture2D nebula = LoadTexture("texture/12_nebula_spritesheet.png");
-    Rectangle nebulaRectangle{ 0.0f, 0.0f, nebula.width / 8, nebula.height / 8 };
+    Texture2D nebula = LoadTexture("textures/NebulaHazard.png");
+    Rectangle nebulaRectangle{ 0.0f, 0.0f, nebula.width, nebula.height};
 
 
     Vector2 nebulaPosition{width,height-nebulaRectangle.height};
