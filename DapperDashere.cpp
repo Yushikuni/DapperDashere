@@ -21,9 +21,12 @@ int main()
 
     //Hazardus Nebula
     Texture2D nebula = LoadTexture("texture/12_nebula_spritesheet.png");
-    Rectangle nebulaRectangle;
+    Rectangle nebulaRectangle{ 0.0f, 0.0f, nebula.width / 8, nebula.height / 8 };
 
 
+    Vector2 nebulaPosition{width,height-nebulaRectangle.height};
+
+    int nebulaVelocity = -600;
 
 
     //textures for Scarfy
@@ -79,24 +82,33 @@ int main()
             velocity += jumpVelocity;
         }
 
-        //update position
+        //update nebula hazard position
+        nebulaRectangle.x += nebulaVelocity * deltaTime;
+
+        //update player position
         scarfyPosition.y += velocity * deltaTime;
         runngingTime += deltaTime;
-
-        if (runngingTime >= updateTimeAnimation)
+        if (!inAir)
         {
-            runngingTime = 0;
-            //update animation frame
-            scarfyRectangle.x = animFrame * scarfyRectangle.width;
-            animFrame++;
-            if (animFrame > 5)
+            if (runngingTime >= updateTimeAnimation)
             {
-                animFrame = 0;
+                runngingTime = 0;
+                //update animation frame
+                scarfyRectangle.x = animFrame * scarfyRectangle.width;
+                animFrame++;
+                if (animFrame > 5)
+                {
+                    animFrame = 0;
+                }
             }
         }
 
 
+        //Drawing hazardus Nebula
+        DrawTextureRec(nebula, nebulaRectangle, nebulaPosition, WHITE);
 
+
+        //Draiwing scarfy
         DrawTextureRec(scarfy, scarfyRectangle, scarfyPosition, WHITE);
 
         EndDrawing();
