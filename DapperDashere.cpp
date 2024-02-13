@@ -20,14 +20,17 @@ int main()
     const int gravity = 1'000;
 
     //Hazardus Nebula
-    Texture2D nebula = LoadTexture("textures/NebulaHazard.png");
-    Rectangle nebulaRectangle{ 0.0f, 0.0f, nebula.width, nebula.height};
+    Texture2D nebula = LoadTexture("textures/12_nebula_spritesheet.png");
+    Rectangle nebulaRectangle{ 0.0f, 0.0f, nebula.width/8, nebula.height/8};
 
 
     Vector2 nebulaPosition{width,height-nebulaRectangle.height};
 
-    int nebulaVelocity = -600;
-
+    int nebulaVelocity = -100;
+    //NebulaHazard Animation variables
+    int nebulaAnimFrame = 0;
+    const float nebulaUpdateTime = 1.0 / 12.0;
+    float nebulaRunningTime = 0;
 
     //textures for Scarfy
     Texture2D scarfy = LoadTexture("textures/scarfy.png");
@@ -95,11 +98,28 @@ int main()
                 runngingTime = 0;
                 //update animation frame
                 scarfyRectangle.x = animFrame * scarfyRectangle.width;
+
                 animFrame++;
                 if (animFrame > 5)
                 {
                     animFrame = 0;
                 }
+            }
+        }
+
+
+        nebulaRunningTime += deltaTime;
+
+        if (nebulaRunningTime >= runngingTime)
+        {
+            runngingTime = 0;
+            //update animation frame
+            nebulaRectangle.x = nebulaAnimFrame * nebulaRectangle.width;
+
+            nebulaAnimFrame++;
+            if (nebulaAnimFrame > 7)
+            {
+                nebulaAnimFrame = 0;
             }
         }
 
