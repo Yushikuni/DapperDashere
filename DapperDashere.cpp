@@ -26,7 +26,18 @@ int main()
 
     Vector2 nebulaPosition{width,height-nebulaRectangle.height};
 
-    int nebulaVelocity = -100;
+    int neb2Frame{};
+    const float neb2UpdateTime{ 1.0 / 16.0 };
+    float neb2RunningTime = 0;
+
+    // nebual animation variables
+    Rectangle neb2Rec{ 0.0, 0.0, nebula.width / 8, nebula.height / 8 };
+    Vector2 neb2Pos{ width + 300, height - nebulaRectangle.height };
+
+
+
+
+    int nebulaVelocity = -200;
     //NebulaHazard Animation variables
     int nebulaAnimFrame = 0;
     const float nebulaUpdateTime = 1.0 / 12.0;
@@ -54,7 +65,7 @@ int main()
     const int jumpVelocity = -600;
     bool inAir = false;
 
-    int velocity = 0;
+    float velocity = 0.0f;
 
     
    
@@ -87,6 +98,10 @@ int main()
 
         //update nebula hazard position
         nebulaRectangle.x += nebulaVelocity * deltaTime;
+
+        // update the second nebula's position
+        neb2Pos.x += nebulaVelocity * deltaTime;
+
 
         //update player position
         scarfyPosition.y += velocity * deltaTime;
@@ -123,9 +138,26 @@ int main()
             }
         }
 
+        neb2RunningTime += deltaTime;
+        if (neb2RunningTime >= neb2UpdateTime)
+        {
+            neb2RunningTime = 0.0;
+            neb2Rec.x = neb2Frame * neb2Rec.width;
+            neb2Frame++;
+            if (neb2Frame > 7)
+            {
+                neb2Frame = 0;
+            }
+        }
+
+
 
         //Drawing hazardus Nebula
         DrawTextureRec(nebula, nebulaRectangle, nebulaPosition, WHITE);
+
+        // draw the second nebula
+        DrawTextureRec(nebula, neb2Rec, neb2Pos, RED);
+
 
 
         //Draiwing scarfy
