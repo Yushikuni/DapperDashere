@@ -63,7 +63,7 @@ int main()
     scarfyData.rectangle.y = 0;
 
     scarfyData.postion.x = width / 2 - scarfy.width / 2;
-    scarfyData.postion.y = height - scarfyRectangle.height;
+    scarfyData.postion.y = height - scarfyData.rectangle.height;
 
     //animation frame
     int animFrame = 0;
@@ -88,7 +88,7 @@ int main()
         ClearBackground(WHITE);
        
         //rectangle on the ground
-        if (scarfyPosition.y >= (height - scarfyRectangle.height))
+        if (scarfyData.postion.y >= (height - scarfyData.rectangle.height))
         {
              velocity = 0;
              inAir = false;
@@ -114,7 +114,7 @@ int main()
 
 
         //update player position
-        scarfyPosition.y += velocity * deltaTime;
+        scarfyData.postion.y += velocity * deltaTime;
         runngingTime += deltaTime;
         if (!inAir)
         {
@@ -122,7 +122,7 @@ int main()
             {
                 runngingTime = 0;
                 //update animation frame
-                scarfyRectangle.x = animFrame * scarfyRectangle.width;
+                scarfyData.rectangle.x = animFrame * scarfyData.rectangle.width;
 
                 animFrame++;
                 if (animFrame > 5)
@@ -171,7 +171,7 @@ int main()
 
 
         //Draiwing scarfy
-        DrawTextureRec(scarfy, scarfyRectangle, scarfyPosition, WHITE);
+        DrawTextureRec(scarfy, scarfyData.rectangle, scarfyData.postion, WHITE);
 
         EndDrawing();
     }
