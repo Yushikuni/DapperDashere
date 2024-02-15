@@ -56,15 +56,14 @@ int main()
 
     //textures for Scarfy
     Texture2D scarfy = LoadTexture("textures/scarfy.png");
-    Rectangle scarfyRectangle;
-    scarfyRectangle.width = scarfy.width / 6;
-    scarfyRectangle.height = scarfy.height;
-    scarfyRectangle.x = 0;
-    scarfyRectangle.y = 0;
+    AnimData scarfyData;
+    scarfyData.rectangle.width = scarfy.width / 6;
+    scarfyData.rectangle.height = scarfy.height;
+    scarfyData.rectangle.x = 0;
+    scarfyData.rectangle.y = 0;
 
-    Vector2 scarfyPosition;
-    scarfyPosition.x = width / 2 - scarfy.width / 2;
-    scarfyPosition.y = height - scarfyRectangle.height;
+    scarfyData.postion.x = width / 2 - scarfy.width / 2;
+    scarfyData.postion.y = height - scarfyRectangle.height;
 
     //animation frame
     int animFrame = 0;
