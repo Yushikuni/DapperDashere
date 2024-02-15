@@ -65,10 +65,10 @@ int main()
     scarfyData.postion.x = width / 2 - scarfy.width / 2;
     scarfyData.postion.y = height - scarfyData.rectangle.height;
 
-    //animation frame
-    int animFrame = 0;
-    const float updateTimeAnimation = 1.0 / 12.0;
-    float runngingTime = 0;
+    scarfyData.runningTime = 0;
+    scarfyData.updateTime = 1.0 / 12.0;
+    scarfyData.frame = 0;
+
 
 
     //Jump velocity (pixels/sec)
@@ -77,6 +77,7 @@ int main()
 
     float velocity = 0.0f;
 
+    float runngingTime = 1.0 / 12.0;
     
    
     while (!WindowShouldClose())
@@ -115,19 +116,19 @@ int main()
 
         //update player position
         scarfyData.postion.y += velocity * deltaTime;
-        runngingTime += deltaTime;
+        scarfyData.runningTime += deltaTime;
         if (!inAir)
         {
-            if (runngingTime >= updateTimeAnimation)
+            if (scarfyData.runningTime >= scarfyData.updateTime)
             {
-                runngingTime = 0;
+                scarfyData.runningTime = 0;
                 //update animation frame
-                scarfyData.rectangle.x = animFrame * scarfyData.rectangle.width;
+                scarfyData.rectangle.x = scarfyData.frame* scarfyData.rectangle.width;
 
-                animFrame++;
-                if (animFrame > 5)
+                scarfyData.frame++;
+                if (scarfyData.frame > 5)
                 {
-                    animFrame = 0;
+                    scarfyData.frame = 0;
                 }
             }
         }
