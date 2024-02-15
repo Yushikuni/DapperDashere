@@ -6,6 +6,17 @@
 #include <vector>
 
 using namespace std;
+
+struct AnimData
+{
+    Rectangle rectangle;
+    Vector2 postion;
+    int frame;
+    float updateTime;
+    float runningTime;
+};
+
+
 int main()
 {
     const int width = 800;
