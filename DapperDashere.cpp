@@ -32,8 +32,10 @@ int main()
 
     //Hazardus Nebula
     Texture2D nebula = LoadTexture("textures/12_nebula_spritesheet.png");
-    Rectangle nebulaRectangle{ 0.0f, 0.0f, nebula.width/8, nebula.height/8};
+    AnimData nebulaData;
+    
 
+    Rectangle nebulaRectangle{ 0.0f, 0.0f, nebula.width/8, nebula.height/8};
 
     Vector2 nebulaPosition{width,height-nebulaRectangle.height};
 
