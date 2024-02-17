@@ -35,7 +35,7 @@ int main()
     //                                                                                      nebulaData.rectangle.height
     AnimData nebulaData{ { 0.0,0.0, nebula.width / 8, nebula.height / 8}, {width,height - nebula.height / 8}, {0}, {1.0 / 16.0},{0} };
     
-    AnimData neb2Data{ {0.0, 0.0, nebula.width / 8, nebula.height / 8 }, {width,height - nebulaData.rectangle.height},{0},{{1.0 / 16.0}},{0} };
+    AnimData neb2Data{ {0.0, 0.0, nebula.width / 8, nebula.height / 8 }, {width,height - nebulaData.rectangle.height},{0},{1.0 / 16.0},{0} };
 
     int neb2Frame{};
     const float neb2UpdateTime{ 1.0 / 16.0 };
