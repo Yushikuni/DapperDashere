@@ -32,20 +32,18 @@ int main()
 
     //Hazardus Nebula
     Texture2D nebula = LoadTexture("textures/12_nebula_spritesheet.png");
-    AnimData nebulaData;
+    //                                                                                      nebulaData.rectangle.height
+    AnimData nebulaData{ { 0.0,0.0, nebula.width / 8, nebula.height / 8}, {width,height - nebula.height / 8}, {0}, {1.0 / 16.0},{0} };
     
-
-    Rectangle nebulaRectangle{ 0.0f, 0.0f, nebula.width/8, nebula.height/8};
-
-    Vector2 nebulaPosition{width,height-nebulaRectangle.height};
+    AnimData neb2Data{ {0.0, 0.0, nebula.width / 8, nebula.height / 8 }, {width,height - nebulaData.rectangle.height},{0},{{1.0 / 16.0}},{0} };
 
     int neb2Frame{};
     const float neb2UpdateTime{ 1.0 / 16.0 };
     float neb2RunningTime = 0;
 
     // nebual animation variables
-    Rectangle neb2Rec{ 0.0, 0.0, nebula.width / 8, nebula.height / 8 };
-    Vector2 neb2Pos{ width + 300, height - nebulaRectangle.height };
+   /* Rectangle neb2Rec{0.0, 0.0, nebula.width / 8, nebula.height / 8};
+    Vector2 neb2Pos{ width + 300, height - nebulaRectangle.height };*/
 
 
 
@@ -110,10 +108,10 @@ int main()
         }
 
         //update nebula hazard position
-        nebulaRectangle.x += nebulaVelocity * deltaTime;
+        nebulaData.rectangle.x += nebulaVelocity * deltaTime;
 
         // update the second nebula's position
-        neb2Pos.x += nebulaVelocity * deltaTime;
+        neb2Data.postion.x += nebulaVelocity * deltaTime;
 
 
         //update player position
@@ -136,13 +134,13 @@ int main()
         }
 
 
-        nebulaRunningTime += deltaTime;
+        nebulaData.runningTime += deltaTime;
 
         if (nebulaRunningTime >= runngingTime)
         {
             runngingTime = 0;
             //update animation frame
-            nebulaRectangle.x = nebulaAnimFrame * nebulaRectangle.width;
+            nebulaData.rectangle.x = nebulaAnimFrame * nebulaData.rectangle.width;
 
             nebulaAnimFrame++;
             if (nebulaAnimFrame > 7)
@@ -150,26 +148,26 @@ int main()
                 nebulaAnimFrame = 0;
             }
         }
-
-        neb2RunningTime += deltaTime;
-        if (neb2RunningTime >= neb2UpdateTime)
+        
+        neb2Data.runningTime += deltaTime;
+        if (neb2Data.runningTime >= neb2Data.updateTime)
         {
-            neb2RunningTime = 0.0;
-            neb2Rec.x = neb2Frame * neb2Rec.width;
-            neb2Frame++;
-            if (neb2Frame > 7)
+            neb2Data.runningTime = 0.0;
+            neb2Data.rectangle.x = neb2Frame * neb2Data.rectangle.width;
+            neb2Data.frame++;
+            if (neb2Data.frame > 7)
             {
-                neb2Frame = 0;
+                neb2Data.frame = 0;
             }
         }
 
 
 
         //Drawing hazardus Nebula
-        DrawTextureRec(nebula, nebulaRectangle, nebulaPosition, WHITE);
+        DrawTextureRec(nebula, nebulaData.rectangle, nebulaData.postion, BLACK);
 
         // draw the second nebula
-        DrawTextureRec(nebula, neb2Rec, neb2Pos, RED);
+        DrawTextureRec(nebula, neb2Data.rectangle, neb2Data.postion, RED);
 
 
 
