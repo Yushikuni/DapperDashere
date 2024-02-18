@@ -41,13 +41,6 @@ int main()
     const float neb2UpdateTime{ 1.0 / 16.0 };
     float neb2RunningTime = 0;
 
-    // nebual animation variables
-   /* Rectangle neb2Rec{0.0, 0.0, nebula.width / 8, nebula.height / 8};
-    Vector2 neb2Pos{ width + 300, height - nebulaRectangle.height };*/
-
-
-
-
     int nebulaVelocity = -200;
     //NebulaHazard Animation variables
     int nebulaAnimFrame = 0;
@@ -77,7 +70,6 @@ int main()
 
     float velocity = 0.0f;
 
-    float runngingTime = 1.0 / 12.0;
     
    
     while (!WindowShouldClose())
@@ -136,9 +128,9 @@ int main()
 
         nebulaData.runningTime += deltaTime;
 
-        if (nebulaRunningTime >= runngingTime)
+        if (nebulaRunningTime >= nebulaData.runningTime)
         {
-            runngingTime = 0;
+            nebulaData.runningTime = 0;
             //update animation frame
             nebulaData.rectangle.x = nebulaAnimFrame * nebulaData.rectangle.width;
 
