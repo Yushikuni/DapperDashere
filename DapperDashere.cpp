@@ -37,15 +37,10 @@ int main()
     
     AnimData neb2Data{ {0.0, 0.0, nebula.width / 8, nebula.height / 8 }, {width,height - nebulaData.rectangle.height},{0},{1.0 / 16.0},{0} };
 
-    int neb2Frame{};
-    const float neb2UpdateTime{ 1.0 / 16.0 };
-    float neb2RunningTime = 0;
 
     int nebulaVelocity = -200;
     //NebulaHazard Animation variables
-    int nebulaAnimFrame = 0;
-    const float nebulaUpdateTime = 1.0 / 12.0;
-    float nebulaRunningTime = 0;
+
 
     //textures for Scarfy
     Texture2D scarfy = LoadTexture("textures/scarfy.png");
@@ -128,16 +123,16 @@ int main()
 
         nebulaData.runningTime += deltaTime;
 
-        if (nebulaRunningTime >= nebulaData.runningTime)
+        if (nebulaData.runningTime >= nebulaData.updateTime)
         {
             nebulaData.runningTime = 0;
             //update animation frame
-            nebulaData.rectangle.x = nebulaAnimFrame * nebulaData.rectangle.width;
+            nebulaData.rectangle.x = nebulaData.frame * nebulaData.rectangle.width;
 
-            nebulaAnimFrame++;
-            if (nebulaAnimFrame > 7)
+            nebulaData.frame++;
+            if (nebulaData.frame > 7)
             {
-                nebulaAnimFrame = 0;
+                nebulaData.frame = 0;
             }
         }
         
@@ -145,7 +140,7 @@ int main()
         if (neb2Data.runningTime >= neb2Data.updateTime)
         {
             neb2Data.runningTime = 0.0;
-            neb2Data.rectangle.x = neb2Frame * neb2Data.rectangle.width;
+            neb2Data.rectangle.x = neb2Data.frame * neb2Data.rectangle.width;
             neb2Data.frame++;
             if (neb2Data.frame > 7)
             {
