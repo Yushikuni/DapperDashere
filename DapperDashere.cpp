@@ -49,11 +49,8 @@ int main()
     //Jump velocity (pixels/sec)
     const int jumpVelocity = -600;
     bool inAir = false;
-
     float velocity = 0.0f;
-
-    
-   
+ 
     while (!WindowShouldClose())
     {
         //Making a delta time (time since last frame)
