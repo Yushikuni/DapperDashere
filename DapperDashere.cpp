@@ -44,20 +44,7 @@ int main()
 
     //textures for Scarfy
     Texture2D scarfy = LoadTexture("textures/scarfy.png");
-    AnimData scarfyData;
-    scarfyData.rectangle.width = scarfy.width / 6;
-    scarfyData.rectangle.height = scarfy.height;
-    scarfyData.rectangle.x = 0;
-    scarfyData.rectangle.y = 0;
-
-    scarfyData.postion.x = width / 2 - scarfy.width / 2;
-    scarfyData.postion.y = height - scarfyData.rectangle.height;
-
-    scarfyData.runningTime = 0;
-    scarfyData.updateTime = 1.0 / 12.0;
-    scarfyData.frame = 0;
-
-
+    AnimData scarfyData{ {0.0,0.0,scarfy.width / 6,scarfy.height},{width / 2 - scarfy.width / 2,height - scarfyData.rectangle.height},{0},{1.0 / 12.0},{0} };
 
     //Jump velocity (pixels/sec)
     const int jumpVelocity = -600;
