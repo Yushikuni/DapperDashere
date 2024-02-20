@@ -1,5 +1,4 @@
 // DapperDashere.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
 
 #include"raylib.h"
 #include"string"
@@ -132,15 +131,11 @@ int main()
             }
         }
 
-
-
         //Drawing hazardus Nebula
         DrawTextureRec(nebula, nebulaData.rectangle, nebulaData.postion, BLACK);
 
         // draw the second nebula
         DrawTextureRec(nebula, neb2Data.rectangle, neb2Data.postion, RED);
-
-
 
         //Draiwing scarfy
         DrawTextureRec(scarfy, scarfyData.rectangle, scarfyData.postion, WHITE);
