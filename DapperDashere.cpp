@@ -18,13 +18,14 @@ struct AnimData
 
 int main()
 {
-    const int width = 800;
-    const int height = 400;
+    int windowDimension[2];
+    windowDimension[0] = 800;
+    windowDimension[1] = 400;
     string gameName = "Dapper Dashere";
     const char* name = gameName.c_str();
 
     SetTargetFPS(60);
-    InitWindow(width, height, name);
+    InitWindow(windowDimension[0], windowDimension[1], name);
     
     //Acceleration due to gravity (pixels/frame)/frame
     const int gravity = 1'000;
@@ -32,9 +33,9 @@ int main()
     //Hazardus Nebula
     Texture2D nebula = LoadTexture("textures/12_nebula_spritesheet.png");
     //                                                                                      nebulaData.rectangle.height
-    AnimData nebulaData{ { 0.0,0.0, nebula.width / 8, nebula.height / 8}, {width,height - nebula.height / 8}, {0}, {1.0 / 16.0},{0} };
+    AnimData nebulaData{ { 0.0,0.0, nebula.width / 8, nebula.height / 8}, {windowDimension[0],windowDimension[1] - nebula.height / 8}, {0}, {1.0 / 16.0},{0} };
     
-    AnimData neb2Data{ {0.0, 0.0, nebula.width / 8, nebula.height / 8 }, {width,height - nebulaData.rectangle.height},{0},{1.0 / 16.0},{0} };
+    AnimData neb2Data{ {0.0, 0.0, nebula.width / 8, nebula.height / 8 }, {windowDimension[0],windowDimension[1] - nebulaData.rectangle.height},{0},{1.0 / 16.0},{0} };
 
 
     int nebulaVelocity = -200;
@@ -43,7 +44,7 @@ int main()
 
     //textures for Scarfy
     Texture2D scarfy = LoadTexture("textures/scarfy.png");
-    AnimData scarfyData{ {0.0,0.0,scarfy.width / 6,scarfy.height},{width / 2 - scarfy.width / 2,height - scarfyData.rectangle.height},{0},{1.0 / 12.0},{0} };
+    AnimData scarfyData{ {0.0,0.0,scarfy.width / 6,scarfy.height},{windowDimension[0] / 2 - scarfy.width / 2,windowDimension[1] - scarfyData.rectangle.height},{0},{1.0 / 12.0},{0} };
 
     //Jump velocity (pixels/sec)
     const int jumpVelocity = -600;
@@ -59,7 +60,7 @@ int main()
         ClearBackground(WHITE);
        
         //rectangle on the ground
-        if (scarfyData.postion.y >= (height - scarfyData.rectangle.height))
+        if (scarfyData.postion.y >= (windowDimension[1] - scarfyData.rectangle.height))
         {
              velocity = 0;
              inAir = false;
