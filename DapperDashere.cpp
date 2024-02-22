@@ -32,11 +32,14 @@ int main()
 
     //Hazardus Nebula
     Texture2D nebula = LoadTexture("textures/12_nebula_spritesheet.png");
+    
     //                                                                                      nebulaData.rectangle.height
     AnimData nebulaData{ { 0.0,0.0, nebula.width / 8, nebula.height / 8}, {windowDimension[0],windowDimension[1] - nebula.height / 8}, {0}, {1.0 / 16.0},{0} };
     
     AnimData neb2Data{ {0.0, 0.0, nebula.width / 8, nebula.height / 8 }, {windowDimension[0],windowDimension[1] - nebulaData.rectangle.height},{0},{1.0 / 16.0},{0} };
 
+
+    AnimData nebulae[2]{ nebulae[0], neb2Data };
 
     int nebulaVelocity = -200;
     //NebulaHazard Animation variables
@@ -79,10 +82,10 @@ int main()
         }
 
         //update nebula hazard position
-        nebulaData.rectangle.x += nebulaVelocity * deltaTime;
+        nebulae[0].rectangle.x += nebulaVelocity * deltaTime;
 
         // update the second nebula's position
-        neb2Data.postion.x += nebulaVelocity * deltaTime;
+        nebulae[1].postion.x += nebulaVelocity * deltaTime;
 
 
         //update player position
@@ -105,38 +108,38 @@ int main()
         }
 
 
-        nebulaData.runningTime += deltaTime;
+        nebulae[0].runningTime += deltaTime;
 
-        if (nebulaData.runningTime >= nebulaData.updateTime)
+        if (nebulae[0].runningTime >= nebulae[0].updateTime)
         {
-            nebulaData.runningTime = 0;
+            nebulae[0].runningTime = 0;
             //update animation frame
-            nebulaData.rectangle.x = nebulaData.frame * nebulaData.rectangle.width;
+            nebulae[0].rectangle.x = nebulae[0].frame * nebulae[0].rectangle.width;
 
-            nebulaData.frame++;
-            if (nebulaData.frame > 7)
+            nebulae[0].frame++;
+            if (nebulae[0].frame > 7)
             {
-                nebulaData.frame = 0;
+                nebulae[0].frame = 0;
             }
         }
         
-        neb2Data.runningTime += deltaTime;
-        if (neb2Data.runningTime >= neb2Data.updateTime)
+        nebulae[1].runningTime += deltaTime;
+        if (nebulae[1].runningTime >= nebulae[1].updateTime)
         {
-            neb2Data.runningTime = 0.0;
-            neb2Data.rectangle.x = neb2Data.frame * neb2Data.rectangle.width;
-            neb2Data.frame++;
-            if (neb2Data.frame > 7)
+            nebulae[1].runningTime = 0.0;
+            nebulae[1].rectangle.x = nebulae[1].frame * nebulae[1].rectangle.width;
+            nebulae[1].frame++;
+            if (nebulae[1].frame > 7)
             {
-                neb2Data.frame = 0;
+                nebulae[1].frame = 0;
             }
         }
 
         //Drawing hazardus Nebula
-        DrawTextureRec(nebula, nebulaData.rectangle, nebulaData.postion, BLACK);
+        DrawTextureRec(nebula, nebulae[0].rectangle, nebulae[0].postion, BLACK);
 
         // draw the second nebula
-        DrawTextureRec(nebula, neb2Data.rectangle, neb2Data.postion, RED);
+        DrawTextureRec(nebula, nebulae[1].rectangle, nebulae[1].postion, RED);
 
         //Draiwing scarfy
         DrawTextureRec(scarfy, scarfyData.rectangle, scarfyData.postion, WHITE);
