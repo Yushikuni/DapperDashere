@@ -33,13 +33,21 @@ int main()
     //Hazardus Nebula
     Texture2D nebula = LoadTexture("textures/12_nebula_spritesheet.png");
     
-    //                                                                                      nebulaData.rectangle.height
-    AnimData nebulaData{ { 0.0,0.0, nebula.width / 8, nebula.height / 8}, {windowDimension[0],windowDimension[1] - nebula.height / 8}, {0}, {1.0 / 16.0},{0} };
-    
-    AnimData neb2Data{ {0.0, 0.0, nebula.width / 8, nebula.height / 8 }, {windowDimension[0],windowDimension[1] - nebulaData.rectangle.height},{0},{1.0 / 16.0},{0} };
+    AnimData nebulae[2];
 
-
-    AnimData nebulae[2]{ nebulae[0], neb2Data };
+    for (int i = 0; i < 2; i++)
+    {
+        nebulae[i].rectangle.x = 0.0;
+        nebulae[i].rectangle.y = 0.0;
+        nebulae[i].rectangle.width = nebula.width / 8;
+        nebulae[i].rectangle.height = nebula.height / 8;
+        nebulae[i].postion.y = windowDimension[1] - nebula.height / 8;
+        nebulae[i].frame = 0;
+        nebulae[i].runningTime = 0;
+        nebulae[i].updateTime = 1.0 / 16.0;
+    }
+    nebulae[0].postion.x = windowDimension[0];
+    nebulae[1].postion.x = windowDimension[0] + 300;
 
     int nebulaVelocity = -200;
     //NebulaHazard Animation variables
@@ -136,7 +144,7 @@ int main()
         }
 
         //Drawing hazardus Nebula
-        DrawTextureRec(nebula, nebulae[0].rectangle, nebulae[0].postion, BLACK);
+        DrawTextureRec(nebula, nebulae[0].rectangle, nebulae[0].postion, WHITE);
 
         // draw the second nebula
         DrawTextureRec(nebula, nebulae[1].rectangle, nebulae[1].postion, RED);
