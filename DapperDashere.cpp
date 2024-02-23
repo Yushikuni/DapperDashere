@@ -33,9 +33,9 @@ int main()
     //Hazardus Nebula
     Texture2D nebula = LoadTexture("textures/12_nebula_spritesheet.png");
     
-    AnimData nebulae[2];
+    AnimData nebulae[3];
 
-    for (int i = 0; i < 2; i++)
+    for (int i = 0; i < 3; i++)
     {
         nebulae[i].rectangle.x = 0.0;
         nebulae[i].rectangle.y = 0.0;
@@ -48,6 +48,7 @@ int main()
     }
     nebulae[0].postion.x = windowDimension[0];
     nebulae[1].postion.x = windowDimension[0] + 300;
+    nebulae[2].postion.x = windowDimension[0] + 600;
 
     int nebulaVelocity = -200;
     //NebulaHazard Animation variables
