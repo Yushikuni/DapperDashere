@@ -36,7 +36,7 @@ int main()
     AnimData nebulae[10];
 
 
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < size(nebulae); i++)
     {
         nebulae[i].rectangle.x = 0.0;
         nebulae[i].rectangle.y = 0.0;
@@ -126,6 +126,8 @@ int main()
                     nebulae[i].frame = 0;
                 }
             }
+            // Move the nebula horizontally
+            nebulae[i].postion.x += nebulaVelocity * deltaTime;
         }
 
         for (int i = 0; i < size(nebulae); ++i)
