@@ -19,8 +19,8 @@ struct AnimData
 int main()
 {
     int windowDimension[2];
-    windowDimension[0] = 800;
-    windowDimension[1] = 400;
+    windowDimension[0] = 1024;
+    windowDimension[1] = 760;
     string gameName = "Dapper Dashere";
     const char* name = gameName.c_str();
 
@@ -33,7 +33,8 @@ int main()
     //Hazardus Nebula
     Texture2D nebula = LoadTexture("textures/12_nebula_spritesheet.png");
     
-    AnimData nebulae[3];
+    AnimData nebulae[10];
+
 
     for (int i = 0; i < 3; i++)
     {
@@ -45,10 +46,9 @@ int main()
         nebulae[i].frame = 0;
         nebulae[i].runningTime = 0;
         nebulae[i].updateTime = 1.0 / 16.0;
+        nebulae[i].postion.x = windowDimension[0] + (i * 300);
     }
-    nebulae[0].postion.x = windowDimension[0];
-    nebulae[1].postion.x = windowDimension[0] + 300;
-    nebulae[2].postion.x = windowDimension[0] + 600;
+
 
     int nebulaVelocity = -200;
     //NebulaHazard Animation variables
@@ -56,7 +56,7 @@ int main()
 
     //textures for Scarfy
     Texture2D scarfy = LoadTexture("textures/scarfy.png");
-    AnimData scarfyData{ {0.0,0.0,scarfy.width / 6,scarfy.height},{windowDimension[0] / 2 - scarfy.width / 2,windowDimension[1] - scarfyData.rectangle.height},{0},{1.0 / 12.0},{0} };
+    AnimData scarfyData{ {0.0,0.0,scarfy.width / 6,scarfy.height},{windowDimension[1] / 2 - scarfy.width / 2,windowDimension[1] - scarfyData.rectangle.height},{0},{1.0 / 12.0},{0} };
 
     //Jump velocity (pixels/sec)
     const int jumpVelocity = -600;
@@ -89,12 +89,15 @@ int main()
         {
             velocity += jumpVelocity;
         }
-
+        for (int i = 0; i < size(nebulae); ++i)
+        {
+            nebulae[i].rectangle.x += nebulaVelocity * deltaTime;
+        }
         //update nebula hazard position
-        nebulae[0].rectangle.x += nebulaVelocity * deltaTime;
+        //nebulae[0].rectangle.x += nebulaVelocity * deltaTime;
 
         // update the second nebula's position
-        nebulae[1].postion.x += nebulaVelocity * deltaTime;
+        //nebulae[1].postion.x += nebulaVelocity * deltaTime;
 
 
         //update player position
@@ -116,8 +119,25 @@ int main()
             }
         }
 
+        for (int i = 0; i < size(nebulae); ++i)
+        {
+            nebulae[i].runningTime += deltaTime;
 
-        nebulae[0].runningTime += deltaTime;
+            if (nebulae[i].runningTime >= nebulae[i].updateTime)
+            {
+                nebulae[i].runningTime = 0;
+                //update animation frame
+                nebulae[i].rectangle.x = nebulae[i].frame * nebulae[i].rectangle.width;
+
+                nebulae[i].frame++;
+                if (nebulae[i].frame > 7)
+                {
+                    nebulae[i].frame = 0;
+                }
+            }
+        }
+
+        /*nebulae[0].runningTime += deltaTime;
 
         if (nebulae[0].runningTime >= nebulae[0].updateTime)
         {
@@ -142,13 +162,17 @@ int main()
             {
                 nebulae[1].frame = 0;
             }
+        }*/
+
+        for (int i = 0; i < size(nebulae); ++i)
+        {
+            DrawTextureRec(nebula, nebulae[i].rectangle, nebulae[i].postion, WHITE);
         }
+       //Drawing hazardus Nebula
+       /* DrawTextureRec(nebula, nebulae[0].rectangle, nebulae[0].postion, WHITE);
 
-        //Drawing hazardus Nebula
-        DrawTextureRec(nebula, nebulae[0].rectangle, nebulae[0].postion, WHITE);
-
-        // draw the second nebula
-        DrawTextureRec(nebula, nebulae[1].rectangle, nebulae[1].postion, RED);
+       // draw the second nebula
+        DrawTextureRec(nebula, nebulae[1].rectangle, nebulae[1].postion, RED);*/
 
         //Draiwing scarfy
         DrawTextureRec(scarfy, scarfyData.rectangle, scarfyData.postion, WHITE);
