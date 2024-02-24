@@ -89,15 +89,6 @@ int main()
         {
             velocity += jumpVelocity;
         }
-        for (int i = 0; i < size(nebulae); ++i)
-        {
-            nebulae[i].rectangle.x += nebulaVelocity * deltaTime;
-        }
-        //update nebula hazard position
-        //nebulae[0].rectangle.x += nebulaVelocity * deltaTime;
-
-        // update the second nebula's position
-        //nebulae[1].postion.x += nebulaVelocity * deltaTime;
 
 
         //update player position
@@ -137,42 +128,10 @@ int main()
             }
         }
 
-        /*nebulae[0].runningTime += deltaTime;
-
-        if (nebulae[0].runningTime >= nebulae[0].updateTime)
-        {
-            nebulae[0].runningTime = 0;
-            //update animation frame
-            nebulae[0].rectangle.x = nebulae[0].frame * nebulae[0].rectangle.width;
-
-            nebulae[0].frame++;
-            if (nebulae[0].frame > 7)
-            {
-                nebulae[0].frame = 0;
-            }
-        }
-        
-        nebulae[1].runningTime += deltaTime;
-        if (nebulae[1].runningTime >= nebulae[1].updateTime)
-        {
-            nebulae[1].runningTime = 0.0;
-            nebulae[1].rectangle.x = nebulae[1].frame * nebulae[1].rectangle.width;
-            nebulae[1].frame++;
-            if (nebulae[1].frame > 7)
-            {
-                nebulae[1].frame = 0;
-            }
-        }*/
-
         for (int i = 0; i < size(nebulae); ++i)
         {
             DrawTextureRec(nebula, nebulae[i].rectangle, nebulae[i].postion, WHITE);
         }
-       //Drawing hazardus Nebula
-       /* DrawTextureRec(nebula, nebulae[0].rectangle, nebulae[0].postion, WHITE);
-
-       // draw the second nebula
-        DrawTextureRec(nebula, nebulae[1].rectangle, nebulae[1].postion, RED);*/
 
         //Draiwing scarfy
         DrawTextureRec(scarfy, scarfyData.rectangle, scarfyData.postion, WHITE);
