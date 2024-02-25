@@ -21,6 +21,11 @@ bool isScarfyOnGraound(AnimData data, int windowHeight)
     return data.postion.y >= windowHeight - data.rectangle.height;
 }
 
+void updateAnimData(AnimData data)
+{
+
+}
+
 int main()
 {
     int windowDimension[2];
