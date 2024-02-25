@@ -77,7 +77,7 @@ int main()
         ClearBackground(WHITE);
        
         //rectangle on the ground
-        if (isScarfyOnGraound)
+        if (isScarfyOnGraound(scarfyData,windowDimension[1]))
         {
              velocity = 0;
              inAir = false;
