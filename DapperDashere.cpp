@@ -16,6 +16,11 @@ struct AnimData
 };
 
 
+bool isScarfyOnGraound(AnimData data, int windowHeight)
+{
+    return data.postion.y >= windowHeight - data.rectangle.height;
+}
+
 int main()
 {
     int windowDimension[2];
@@ -72,7 +77,7 @@ int main()
         ClearBackground(WHITE);
        
         //rectangle on the ground
-        if (scarfyData.postion.y >= (windowDimension[1] - scarfyData.rectangle.height))
+        if (isScarfyOnGraound)
         {
              velocity = 0;
              inAir = false;
