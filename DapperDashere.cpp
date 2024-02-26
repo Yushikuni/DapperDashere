@@ -116,7 +116,7 @@ int main()
 
         //update player position
         scarfyData.postion.y += velocity * deltaTime;
-
+       
         if (!inAir)
         {
             scarfyData = updateAnimData(scarfyData, deltaTime, 5);
@@ -125,6 +125,9 @@ int main()
         for (int i = 0; i < size(nebulae); ++i)
         {
             nebulae[i] = updateAnimData(nebulae[i], deltaTime, 7);
+            
+            // Move the nebula horizontally
+            nebulae[i].postion.x += nebulaVelocity * deltaTime;
         }
 
         for (int i = 0; i < size(nebulae); ++i)
