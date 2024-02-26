@@ -21,9 +21,22 @@ bool isScarfyOnGraound(AnimData data, int windowHeight)
     return data.postion.y >= windowHeight - data.rectangle.height;
 }
 
-void updateAnimData(AnimData data)
+AnimData updateAnimData(AnimData data, float dTime, int maxFrameValue)
 {
+    data.runningTime += dTime;
+    if (data.runningTime >= data.updateTime)
+    {
+        data.runningTime = 0;
+        //update animation frame
+        data.rectangle.x = data.frame * data.rectangle.width;
+        data.frame++;
 
+        if (data.frame > maxFrameValue)
+        {
+            data.frame = 0;
+        }
+    }
+    return data;
 }
 
 int main()
@@ -103,41 +116,15 @@ int main()
 
         //update player position
         scarfyData.postion.y += velocity * deltaTime;
-        scarfyData.runningTime += deltaTime;
+
         if (!inAir)
         {
-            if (scarfyData.runningTime >= scarfyData.updateTime)
-            {
-                scarfyData.runningTime = 0;
-                //update animation frame
-                scarfyData.rectangle.x = scarfyData.frame* scarfyData.rectangle.width;
-
-                scarfyData.frame++;
-                if (scarfyData.frame > 5)
-                {
-                    scarfyData.frame = 0;
-                }
-            }
+            scarfyData = updateAnimData(scarfyData, deltaTime, 5);
         }
 
         for (int i = 0; i < size(nebulae); ++i)
         {
-            nebulae[i].runningTime += deltaTime;
-
-            if (nebulae[i].runningTime >= nebulae[i].updateTime)
-            {
-                nebulae[i].runningTime = 0;
-                //update animation frame
-                nebulae[i].rectangle.x = nebulae[i].frame * nebulae[i].rectangle.width;
-
-                nebulae[i].frame++;
-                if (nebulae[i].frame > 7)
-                {
-                    nebulae[i].frame = 0;
-                }
-            }
-            // Move the nebula horizontally
-            nebulae[i].postion.x += nebulaVelocity * deltaTime;
+            nebulae[i] = updateAnimData(nebulae[i], deltaTime, 7);
         }
 
         for (int i = 0; i < size(nebulae); ++i)
