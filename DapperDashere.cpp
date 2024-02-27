@@ -58,6 +58,8 @@ int main()
     
     AnimData nebulae[10];
 
+    Texture2D backGround = LoadTexture("textures/far-buildings.png");
+    float bgX{};
 
     for (int i = 0; i < size(nebulae); i++)
     {
@@ -93,6 +95,11 @@ int main()
         
         BeginDrawing();
         ClearBackground(WHITE);
+        bgX -= 20 * deltaTime;
+
+        Vector2 bgPosition{ bgX , 0.0 };
+
+        DrawTextureEx(backGround, bgPosition, 0.0, 5.0, WHITE);
        
         //rectangle on the ground
         if (isScarfyOnGraound(scarfyData,windowDimension[1]))
@@ -142,6 +149,7 @@ int main()
     }
     UnloadTexture(scarfy);
     UnloadTexture(nebula);
+    UnloadTexture(backGround);
     CloseWindow();
     return 0;
 }
