@@ -96,11 +96,17 @@ int main()
         BeginDrawing();
         ClearBackground(WHITE);
         bgX -= 20 * deltaTime;
+        if (bgX <= -backGround.width * 2)
+        {
+            bgX = 0;
+        }
 
-        Vector2 bgPosition{ bgX , 0.0 };
+        Vector2 bg1Position{ bgX , 0.0 };
+        DrawTextureEx(backGround, bg1Position, 0.0, 5.0, WHITE);
 
-        DrawTextureEx(backGround, bgPosition, 0.0, 5.0, WHITE);
-       
+        Vector2 bg2Position{ bgX + backGround.width * 2 , 0.0 };
+        DrawTextureEx(backGround, bg2Position, 0.0, 5.0, WHITE);
+
         //rectangle on the ground
         if (isScarfyOnGraound(scarfyData,windowDimension[1]))
         {
