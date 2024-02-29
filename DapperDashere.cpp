@@ -61,6 +61,8 @@ int main()
     
     //moving background right to left
     float bgX{};
+    float mgX{};
+    float fgX{};
 
     AnimData nebulae[10];
     for (int i = 0; i < size(nebulae); i++)
@@ -98,9 +100,20 @@ int main()
         BeginDrawing();
         ClearBackground(WHITE);
         bgX -= 20 * deltaTime;
+        mgX -= 40 * deltaTime;
+        fgX -= 80 * deltaTime;
+
         if (bgX <= -backGround.width * 2)
         {
             bgX = 0;
+        }
+        if (mgX <= -foreGround.width * 2)
+        {
+            mgX = 0;
+        }
+        if (fgX <= -foreGround.width * 2)
+        {
+            fgX = 0;
         }
 
         Vector2 bg1Position{ bgX , 0.0 };
@@ -108,6 +121,19 @@ int main()
 
         Vector2 bg2Position{ bgX + backGround.width * 2 , 0.0 };
         DrawTextureEx(backGround, bg2Position, 0.0, 5.0, WHITE);
+
+        Vector2 mg1Pos{ mgX, 0.0 };
+        DrawTextureEx(midGround, mg1Pos, 0.0, 5.0, WHITE);
+
+        Vector2 mg2Pos{ mgX + midGround.width * 2, 0.0 };
+        DrawTextureEx(midGround, mg2Pos, 0.0, 5.0, WHITE);
+
+        Vector2 fg1Pos{ fgX, 0.0 };
+        DrawTextureEx(foreGround, fg1Pos, 0.0, 5.0, WHITE);
+
+        Vector2 fg2Pos{ fgX + foreGround.width * 2, 0.0 };
+        DrawTextureEx(foreGround, fg2Pos, 0.0, 5.0, WHITE);
+
 
         //rectangle on the ground
         if (isScarfyOnGraound(scarfyData,windowDimension[1]))
