@@ -55,12 +55,14 @@ int main()
 
     //Hazardus Nebula
     Texture2D nebula = LoadTexture("textures/12_nebula_spritesheet.png");
-    
-    AnimData nebulae[10];
-
     Texture2D backGround = LoadTexture("textures/far-buildings.png");
+    Texture2D midGround = LoadTexture("textures/back-buildings.png");
+    Texture2D foreGround = LoadTexture("textures/foreground.png");
+    
+    //moving background right to left
     float bgX{};
 
+    AnimData nebulae[10];
     for (int i = 0; i < size(nebulae); i++)
     {
         nebulae[i].rectangle.x = 0.0;
@@ -155,6 +157,8 @@ int main()
     }
     UnloadTexture(scarfy);
     UnloadTexture(nebula);
+    UnloadTexture(midGround);
+    UnloadTexture(foreGround);
     UnloadTexture(backGround);
     CloseWindow();
     return 0;
