@@ -78,6 +78,7 @@ int main()
         nebulae[i].postion.x = windowDimension[0] + (i * 300);
     }
 
+    float finishLine = { nebulae[size(nebulae) - 1].postion.x };
 
     int nebulaVelocity = -200;
     //NebulaHazard Animation variables
@@ -170,6 +171,8 @@ int main()
             // Move the nebula horizontally
             nebulae[i].postion.x += nebulaVelocity * deltaTime;
         }
+
+        finishLine += nebulaVelocity * deltaTime;
 
         for (int i = 0; i < size(nebulae); ++i)
         {
