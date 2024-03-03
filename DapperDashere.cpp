@@ -64,6 +64,8 @@ int main()
     float mgX{};
     float fgX{};
 
+    bool collision = false;
+
     AnimData nebulae[10];
     for (int i = 0; i < size(nebulae); i++)
     {
@@ -172,17 +174,41 @@ int main()
             nebulae[i].postion.x += nebulaVelocity * deltaTime;
         }
 
-        finishLine += nebulaVelocity * deltaTime;
+        
 
-        for (int i = 0; i < size(nebulae); ++i)
+        for(AnimData nebula : nebulae)
         {
-            DrawTextureRec(nebula, nebulae[i].rectangle, nebulae[i].postion, WHITE);
+            float pad = 20;
+            Rectangle nebReg{ nebula.postion.x + pad, nebula.postion.y +pad , nebula.rectangle.width - 2*pad,nebula.rectangle.height - 2*pad};
+            Rectangle scaReg{ scarfyData.postion.x, scarfyData.postion.y,scarfyData.rectangle.width,scarfyData.rectangle.height };
+
+            if (CheckCollisionRecs(nebReg,scaReg))
+            {
+                collision = true;
+            }
         }
 
-        //Draiwing scarfy
-        DrawTextureRec(scarfy, scarfyData.rectangle, scarfyData.postion, WHITE);
+        if (collision) 
+        {
+            // losing a game
 
-        EndDrawing();
+            CloseWindow();
+            return 63;
+        }
+        else
+        {
+            finishLine += nebulaVelocity * deltaTime;
+
+            for (int i = 0; i < size(nebulae); ++i)
+            {
+                DrawTextureRec(nebula, nebulae[i].rectangle, nebulae[i].postion, WHITE);
+            }
+
+            //Draiwing scarfy
+            DrawTextureRec(scarfy, scarfyData.rectangle, scarfyData.postion, WHITE);
+
+            EndDrawing();
+        }
     }
     UnloadTexture(scarfy);
     UnloadTexture(nebula);
