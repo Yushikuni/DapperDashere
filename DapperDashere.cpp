@@ -66,7 +66,7 @@ int main()
 
     bool collision = false;
 
-    AnimData nebulae[10];
+    AnimData nebulae[2];
     for (int i = 0; i < size(nebulae); i++)
     {
         nebulae[i].rectangle.x = 0.0;
@@ -176,7 +176,7 @@ int main()
 
         
 
-        for(AnimData nebula : nebulae)
+        for(AnimData const nebula : nebulae)
         {
             float pad = 20;
             Rectangle nebReg{ nebula.postion.x + pad, nebula.postion.y +pad , nebula.rectangle.width - 2*pad,nebula.rectangle.height - 2*pad};
@@ -191,9 +191,13 @@ int main()
         if (collision) 
         {
             // losing a game
-
-            CloseWindow();
-            return 63;
+            DrawText(";GAME OVER;", windowDimension[0] / 4, windowDimension[1] / 2, 40, RED);
+            //CloseWindow();
+           // return 63;
+        }
+        else if (scarfyData.postion.x >= finishLine)
+        {
+            DrawText(";GAME FINISHED;", windowDimension[0] / 4, windowDimension[1] / 2, 40, GOLD);
         }
         else
         {
